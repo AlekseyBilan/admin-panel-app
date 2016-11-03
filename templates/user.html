@@ -1,0 +1,16 @@
+<div class="header">
+    <h2>User</h2>
+    <button type="submit" class="btn btn-info" ng-click="goToAdminPanel()">go to admin panel</button>
+</div>
+<div class="user-preview-wrap">
+    <ul>
+        <li ng-repeat="article in articles" class="articles">
+            <img class="img-user-preview" src="{{article.file}}" alt=""
+                 ng-mouseover="showDescription = !showDescription" ng-mouseleave="showDescription = !showDescription"/>
+
+            <div ng-hide="article.description ? !showDescription : true" class="description-wrap">
+                <span>{{article.description}}</span>
+            </div>
+        </li>
+    </ul>
+</div>

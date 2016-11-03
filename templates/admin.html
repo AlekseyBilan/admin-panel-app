@@ -1,0 +1,59 @@
+<div class="header">
+    <h2>Admin panel</h2>
+    <button type="submit" class="btn btn-info preview" ng-click="goToUserPreview()">Preview</button>
+</div>
+<div class="admin-panel-wrap">
+    <ul>
+        <li ng-repeat="article in articles" class="articles" title="Click to edit"
+            ng-click="showEditBlock ? showEditBtn  = false : showEditBtn = !showEditBtn">
+            <div class="img-uploaded-wrap" ng-show="!showEditBlock">
+                <img src="{{article.file}}" alt="" class="img"/>
+            </div>
+
+            <div class="description-wrap" ng-show="!showEditBlock">
+                <span >{{article.description}}</span>
+            </div>
+            <div class="actions-wrap" ng-show="showEditBtn">
+                <button ng-click="showEditBlock = !showEditBlock" class="btn btn-warning">Edit
+                </button>
+                <button class="btn btn-danger" ng-click="removeArticle(article.id)">Remove
+                </button>
+            </div>
+            <div ng-show="showEditBlock">
+                <div class="input-file-wrap">
+                    <img class="img img-preview" src="{{article.editFile || article.file}}" file-preview="article.editFile"
+                         id="{{article.id}}" alt=""/>
+                    <span class="select-file-text">Select new image</span>
+                    <input class="select-file" type="file" ng-model="article.editFile" file-changed/>
+                </div>
+                <textarea class="description" ng-model="article.editDescription" placeholder="description">{{article.description}}</textarea>
+
+                <div class="actions-wrap">
+                    <button class="btn btn-warning"
+                            ng-click="article.editFile = article.file; showEditBlock = !showEditBlock; showEditBtn = true">
+                        Cancel
+                    </button>
+                    <button class="btn btn-success"
+                            ng-click="editArticle(article.id, article.editFile, article.editDescription); showEditBlock = !showEditBlock; showEditBtn = true">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </li>
+        <!--create new article-->
+        <li class="create-new-article">
+            <div id="file-wrap" class="input-file-wrap">
+                <img class="img" file-preview="currentArticle.file" src="{{currentArticle.file}}" alt=""/>
+                <span class="select-file-text">Select image</span>
+                <input class="select-file" id="file" type="file" ng-model="currentArticle.file" file-changed/>
+            </div>
+            <textarea class="description" ng-model="currentArticle.description"
+                      placeholder="Add description"></textarea>
+
+            <div class="actions-wrap" ng-show="currentArticle.file">
+                <button class="btn clear btn-danger" ng-click="clearArticleForm();">Clear</button>
+                <button class="btn save btn-success" ng-click="addNewArticle();">Add article</button>
+            </div>
+        </li>
+    </ul>
+</div>

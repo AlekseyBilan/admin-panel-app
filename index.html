@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html ng-app="adminPanelApp">
+<head>
+    <title>Admin panel</title>
+    <script src="components/lib/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="app-controller.js"></script>
+    <script src="components/model.js"></script>
+    <script src="components/directives.js"></script>
+    <link href="app.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-controller="adminPanelAppCtrl">
+    <div class="container">
+        <ng-include src="url"></ng-include>
+    </div>
+</body>
+</html>
